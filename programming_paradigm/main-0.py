@@ -1,5 +1,9 @@
 import sys
-from alx_be_python.programming_paradigm.bank_account import BankAccount
+try:
+    from alx_be_python.programming_paradigm.bank_account import BankAccount
+except Exception:
+    # Fall back to a local module import when running the script directly
+    from bank_account import BankAccount
 
 
 def main():
