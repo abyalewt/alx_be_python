@@ -1,5 +1,5 @@
 import sys
-from bank_account import BankAccount
+from alx_be_python.programming_paradigm.bank_account import BankAccount
 
 
 def main():
