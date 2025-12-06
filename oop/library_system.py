@@ -9,6 +9,7 @@ class Book:
 
     def get_details(self):
         """Returns the basic details of the book."""
+        # Note: The expected output format is "Book: Title by Author"
         return f"Book: {self.title} by {self.author}"
 
 
@@ -19,14 +20,16 @@ class EBook(Book):
     """
 
     def __init__(self, title, author, file_size):
-        # Call the base class constructor
+        # Using super() for proper inheritance initialization
         super().__init__(title, author)
         self.file_size = file_size
 
     def get_details(self):
-        """Returns details specific to EBook."""
+        """Returns details specific to EBook, overriding the base method."""
+        # Get base details and modify the prefix to match the expected format
+        # EBook: Title by Author, File Size: 500KB
         base_details = super().get_details().replace("Book: ", "EBook: ")
-        return f"{base_details}, File Size: {self.file_size}KB"
+        return f"{base_details}, File Size: {self.file_size}"
 
 
 class PrintBook(Book):
@@ -36,12 +39,14 @@ class PrintBook(Book):
     """
 
     def __init__(self, title, author, page_count):
-        # Call the base class constructor
+        # Using super() for proper inheritance initialization
         super().__init__(title, author)
         self.page_count = page_count
 
     def get_details(self):
-        """Returns details specific to PrintBook."""
+        """Returns details specific to PrintBook, overriding the base method."""
+        # Get base details and modify the prefix to match the expected format
+        # PrintBook: Title by Author, Page Count: 234
         base_details = super().get_details().replace("Book: ", "PrintBook: ")
         return f"{base_details}, Page Count: {self.page_count}"
 
@@ -57,12 +62,12 @@ class Library:
         self.books = []
 
     def add_book(self, book):
-        """Adds a Book, EBook, or PrintBook instance to the library."""
+        """Adds a Book instance to the library."""
         self.books.append(book)
 
     def list_books(self):
         """Prints details of each book in the library using polymorphism."""
         for book in self.books:
-            # Polymorphism in action: calling .get_details() automatically
-            # executes the specific version defined in Book, EBook, or PrintBook.
+            # Polymorphism: Calls the appropriate get_details() method
+            # (Book, EBook, or PrintBook) for each object.
             print(book.get_details())
