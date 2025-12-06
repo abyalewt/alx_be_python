@@ -12,7 +12,8 @@ class Shape:
         Calculates the area of the shape.
         Raises an error to ensure subclasses implement their own version.
         """
-        raise NotImplementedError("Subclass must implement abstract method 'area'")
+        # Raising NotImplementedError exactly as a placeholder
+        raise NotImplementedError
 
 
 class Rectangle(Shape):
@@ -39,4 +40,5 @@ class Circle(Shape):
 
     def area(self):
         """Calculates the area of the circle: π * radius²."""
+        # Use math.pi and ** 2 for clear implementation
         return math.pi * (self.radius**2)
