@@ -1,7 +1,5 @@
 class Book:
-    """
-    Base class representing a general book.
-    """
+    """Base class for all books with common attributes (title, author)."""
 
     def __init__(self, title, author):
         self.title = title
@@ -9,65 +7,54 @@ class Book:
 
     def get_details(self):
         """Returns the basic details of the book."""
-        # Note: The expected output format is "Book: Title by Author"
         return f"Book: {self.title} by {self.author}"
 
 
 class EBook(Book):
-    """
-    Derived class representing an electronic book.
-    Inherits from Book and adds file_size.
-    """
+    """Derived class for an electronic book, inheriting from Book."""
 
     def __init__(self, title, author, file_size):
-        # Using super() for proper inheritance initialization
+        # Calls the parent class constructor to initialize title and author
         super().__init__(title, author)
         self.file_size = file_size
 
     def get_details(self):
-        """Returns details specific to EBook, overriding the base method."""
-        # Get base details and modify the prefix to match the expected format
-        # EBook: Title by Author, File Size: 500KB
+        """Overrides the base method to include file size details."""
+        # Start with base details and append specific info, ensuring correct prefix
         base_details = super().get_details().replace("Book: ", "EBook: ")
-        return f"{base_details}, File Size: {self.file_size}"
+        return f"{base_details}, File Size: {self.file_size}KB"
 
 
 class PrintBook(Book):
-    """
-    Derived class representing a physical print book.
-    Inherits from Book and adds page_count.
-    """
+    """Derived class for a physical book, inheriting from Book."""
 
     def __init__(self, title, author, page_count):
-        # Using super() for proper inheritance initialization
+        # Calls the parent class constructor to initialize title and author
         super().__init__(title, author)
         self.page_count = page_count
 
     def get_details(self):
-        """Returns details specific to PrintBook, overriding the base method."""
-        # Get base details and modify the prefix to match the expected format
-        # PrintBook: Title by Author, Page Count: 234
+        """Overrides the base method to include page count details."""
+        # Start with base details and append specific info, ensuring correct prefix
         base_details = super().get_details().replace("Book: ", "PrintBook: ")
         return f"{base_details}, Page Count: {self.page_count}"
 
 
 class Library:
     """
-    Represents the library system, demonstrating Composition
-    by managing a collection of Book objects.
+    Implements Composition: The Library 'has-a' list of books.
     """
 
     def __init__(self):
-        # Composition: The Library 'has-a' list of books.
-        self.books = []
+        self.books = []  # List to hold Book, EBook, and PrintBook instances
 
     def add_book(self, book):
-        """Adds a Book instance to the library."""
+        """Adds any Book object to the library's collection."""
         self.books.append(book)
 
     def list_books(self):
-        """Prints details of each book in the library using polymorphism."""
+        """Prints details of each book using polymorphism."""
         for book in self.books:
-            # Polymorphism: Calls the appropriate get_details() method
-            # (Book, EBook, or PrintBook) for each object.
+            # Polymorphism: The correct get_details() method is called
+            # based on the specific type of object (Book, EBook, or PrintBook).
             print(book.get_details())
